@@ -2,7 +2,7 @@ pragma solidity ^0.5.16;
 
 import "ds-test/test.sol";
 import "../src/core/UniswapV2Pair.sol";
-import "../src/core/test/MockERC20.sol";
+import "../src/core/mocks/MockERC20.sol";
 import "../src/core/UniswapV2Factory.sol";
 import "../src/core/libraries/SafeMath.sol";
 import "../src/core/libraries/Math.sol";
@@ -80,7 +80,14 @@ contract UniswapV2PairTest is DSTest {
     }
 
     function testSwap() public {
-        uint amountToAdd = 4000;
-        addLiquidity(amountToAdd, amountToAdd);
+        uint amount0ToAdd = 5000;
+        uint amount1ToAdd = 10000;
+        addLiquidity(amount0ToAdd, amount1ToAdd);
+
+        uint swapAmount = 1000;
+        uint expectedOutputAmount = 50;
+        testToken1.transfer(address(uniswapV2PairTest), swapAmount);
+        bytes memory callData = '';
+        uniswapV2PairTest.swap(expectedOutputAmount, 0, address(this), callData);
     }
 }

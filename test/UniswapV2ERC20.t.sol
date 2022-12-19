@@ -1,7 +1,7 @@
 pragma solidity ^0.5.16;
 
 import "ds-test/test.sol";
-import "../src/core/test/ERC20.sol";
+import "../src/core/mocks/ERC20.sol";
 import "../src/core/libraries/SafeMath.sol";
 
 // Certain tests/checks not possible as solc version for UniswapV2 contracts is ^0.5.16
